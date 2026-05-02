@@ -11,6 +11,30 @@ setup((app) => {
 })
 
 const preview: Preview = {
+  globalTypes: {
+    theme: {
+      description: 'Theme',
+      toolbar: {
+        title: 'Theme',
+        icon: 'paintbrush',
+        items: [
+          { value: 'light', title: '☀️ Light' },
+          { value: 'dark', title: '🌙 Dark' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    theme: 'light',
+  },
+  decorators: [
+    (story, context) => {
+      const theme = context.globals.theme || 'light'
+      document.documentElement.setAttribute('data-theme', theme)
+      return story()
+    },
+  ],
   parameters: {
     controls: {
       matchers: {

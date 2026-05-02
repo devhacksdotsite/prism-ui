@@ -30,6 +30,14 @@
     font-family: var(--font-sans);
   }
 
+  html[data-theme="dark"] {
+    --color-surface-0: #1a1225;
+    --color-surface-1: #231a30;
+    --color-surface-2: #332a45;
+    --color-text: #e8e0f0;
+    --color-text-muted: #9a8cb5;
+  }
+
   /* Fix PrimeVue sortable header layout */
   th [data-pc-section="columnheadercontent"],
   th button {
