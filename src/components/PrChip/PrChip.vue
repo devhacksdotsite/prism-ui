@@ -2,9 +2,10 @@
 type Color = 'pink' | 'purple' | 'blue' | 'mint' | 'yellow' | 'coral' | 'lilac'
 
 const props = withDefaults(defineProps<{
-  value: string
+  label: string
   color?: Color
   removable?: boolean
+  image?: string
 }>(), {
   color: 'purple',
 })
@@ -24,10 +25,11 @@ const styles: Record<Color, { bg: string; text: string }> = {
 
 <template>
   <span
-    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold"
+    class="inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full text-sm font-medium"
     :style="{ backgroundColor: styles[color].bg, color: styles[color].text }"
   >
-    {{ value }}
-    <button v-if="removable" @click="emit('remove')" class="hover:opacity-70 cursor-pointer" aria-label="Remove">✕</button>
+    <img v-if="image" :src="image" :alt="label" class="w-6 h-6 rounded-full object-cover" />
+    <span :class="!image ? 'pl-2' : ''">{{ label }}</span>
+    <button v-if="removable" @click="emit('remove')" class="ml-1 hover:opacity-70 cursor-pointer text-xs" aria-label="Remove">✕</button>
   </span>
 </template>
