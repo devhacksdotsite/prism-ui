@@ -1,0 +1,54 @@
+/* Shared animation presets for Prism UI */
+
+/* Scale + fade (dialogs, popovers) */
+.pr-scale-enter-active {
+  animation: pr-scale-in 0.2s ease-out;
+}
+.pr-scale-leave-active {
+  animation: pr-scale-in 0.15s ease-in reverse;
+}
+@keyframes pr-scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Slide down + fade (toasts, dropdowns) */
+.pr-slide-enter-active {
+  animation: pr-slide-down 0.25s ease-out;
+}
+.pr-slide-leave-active {
+  animation: pr-slide-down 0.2s ease-in reverse;
+}
+@keyframes pr-slide-down {
+  from { opacity: 0; transform: translateY(-0.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade only (overlays, masks) */
+.pr-fade-enter-active {
+  animation: pr-fade 0.2s ease-out;
+}
+.pr-fade-leave-active {
+  animation: pr-fade 0.15s ease-in reverse;
+}
+@keyframes pr-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Collapse (accordion content) */
+.pr-collapse-enter-active,
+.pr-collapse-leave-active {
+  overflow: hidden;
+  transition: max-height 0.25s ease, opacity 0.25s ease;
+}
+.pr-collapse-enter-from,
+.pr-collapse-leave-to {
+  max-height: 0;
+  opacity: 0;
+}
+.pr-collapse-enter-to,
+.pr-collapse-leave-from {
+  max-height: 500px;
+  opacity: 1;
+}

@@ -15,8 +15,8 @@ withDefaults(defineProps<{
 const visible = defineModel<boolean>({ default: false })
 
 const pt = {
-  mask: { class: 'fixed inset-0 z-50 flex items-center justify-center bg-text/20 backdrop-blur-sm' },
-  root: { class: 'bg-surface-0 rounded-2xl shadow-2xl border-2 border-surface-2 mx-4 max-h-[90vh] overflow-auto' },
+  mask: { class: 'fixed inset-0 z-50 flex items-center justify-center bg-text/20 backdrop-blur-sm pr-fade-enter-active' },
+  root: { class: 'bg-surface-0 rounded-2xl shadow-2xl border-2 border-surface-2 mx-4 max-h-[90vh] overflow-auto pr-scale-enter-active' },
   header: { class: 'flex items-center justify-between p-5 border-b border-surface-2' },
   title: { class: 'text-lg font-bold text-text' },
   headerActions: { class: 'flex items-center' },
