@@ -13,6 +13,11 @@ const cities = [
 const meta: Meta<typeof PrSelect> = {
   title: 'Components/PrSelect',
   component: PrSelect,
+  render: (args) => ({
+    components: { PrSelect },
+    setup: () => ({ args }),
+    template: '<PrSelect v-bind="args" class="max-w-xs" />',
+  }),
   argTypes: {
     status: { control: 'select', options: ['default', 'success', 'error'] },
     disabled: { control: 'boolean' },
@@ -32,6 +37,7 @@ type Story = StoryObj<typeof PrSelect>
 export const Default: Story = {}
 
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { PrSelect },
     setup: () => ({ cities, v1: ref(null), v2: ref(null), v3: ref(null) }),
@@ -43,13 +49,5 @@ export const States: Story = {
         <PrSelect :options="cities" optionLabel="name" placeholder="Disabled" disabled />
       </div>
     `,
-  }),
-}
-
-export const SimpleStrings: Story = {
-  render: () => ({
-    components: { PrSelect },
-    setup: () => ({ options: ['React', 'Vue', 'Svelte', 'Astro'], val: ref(null) }),
-    template: `<PrSelect v-model="val" :options="options" placeholder="Pick a framework" class="max-w-xs" />`,
   }),
 }

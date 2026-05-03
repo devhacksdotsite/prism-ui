@@ -1,14 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { PrDataTable } from '.'
 
-const meta: Meta<typeof PrDataTable> = {
-  title: 'Components/PrDataTable',
-  component: PrDataTable,
-}
-
-export default meta
-type Story = StoryObj<typeof PrDataTable>
-
 const columns = [
   { field: 'name', header: 'Name', sortable: true },
   { field: 'role', header: 'Role', sortable: true },
@@ -26,14 +18,33 @@ const data = [
   { name: 'Emma Tran', role: 'PM', status: 'Active' },
 ]
 
-export const Default: Story = {
-  args: { value: data, columns },
+const meta: Meta<typeof PrDataTable> = {
+  title: 'Components/PrDataTable',
+  component: PrDataTable,
+  render: (args) => ({
+    components: { PrDataTable },
+    setup: () => ({ args }),
+    template: '<PrDataTable v-bind="args" />',
+  }),
+  argTypes: {
+    striped: { control: 'boolean' },
+    paginator: { control: 'boolean' },
+    rows: { control: 'number' },
+  },
+  args: {
+    value: data,
+    columns,
+    striped: false,
+    paginator: false,
+    rows: 5,
+  },
 }
 
-export const Sortable: Story = {
-  args: { value: data, columns },
-}
+export default meta
+type Story = StoryObj<typeof PrDataTable>
+
+export const Default: Story = {}
 
 export const Paginated: Story = {
-  args: { value: data, columns, paginator: true, rows: 4 },
+  args: { paginator: true, rows: 4 },
 }

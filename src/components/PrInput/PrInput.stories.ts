@@ -4,6 +4,11 @@ import { PrInput } from '.'
 const meta: Meta<typeof PrInput> = {
   title: 'Components/PrInput',
   component: PrInput,
+  render: (args) => ({
+    components: { PrInput },
+    setup: () => ({ args }),
+    template: '<PrInput v-bind="args" class="max-w-xs" />',
+  }),
   argTypes: {
     status: { control: 'select', options: ['default', 'success', 'error'] },
     disabled: { control: 'boolean' },
@@ -21,6 +26,7 @@ type Story = StoryObj<typeof PrInput>
 export const Default: Story = {}
 
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { PrInput },
     template: `

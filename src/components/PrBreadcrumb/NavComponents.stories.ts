@@ -4,6 +4,7 @@ import { PrBreadcrumb } from '../PrBreadcrumb'
 import { PrPaginator } from '../PrPaginator'
 
 const meta: Meta = {
+  parameters: { controls: { disable: true } },
   title: 'Components/Breadcrumb & Paginator',
 }
 

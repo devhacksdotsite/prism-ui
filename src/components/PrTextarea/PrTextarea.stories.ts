@@ -4,6 +4,11 @@ import { PrTextarea } from '.'
 const meta: Meta<typeof PrTextarea> = {
   title: 'Components/PrTextarea',
   component: PrTextarea,
+  render: (args) => ({
+    components: { PrTextarea },
+    setup: () => ({ args }),
+    template: '<PrTextarea v-bind="args" class="max-w-sm" />',
+  }),
   argTypes: {
     status: { control: 'select', options: ['default', 'success', 'error'] },
     disabled: { control: 'boolean' },
@@ -28,6 +33,7 @@ export const WithCharCount: Story = {
 }
 
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { PrTextarea },
     template: `

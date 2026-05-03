@@ -3,6 +3,7 @@ import { PrSkeleton } from '../PrSkeleton'
 import { PrProgressBar } from '../PrProgressBar'
 
 const meta: Meta = {
+  parameters: { controls: { disable: true } },
   title: 'Components/Skeleton & ProgressBar',
 }
 

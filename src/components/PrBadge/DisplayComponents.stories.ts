@@ -4,6 +4,7 @@ import { PrTag } from '../PrTag'
 import { PrAvatar } from '../PrAvatar'
 
 const meta: Meta = {
+  parameters: { controls: { disable: true } },
   title: 'Components/Badge, Tag & Avatar',
 }
 

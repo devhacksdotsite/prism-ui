@@ -4,6 +4,11 @@ import { PrButton } from '.'
 const meta: Meta<typeof PrButton> = {
   title: 'Components/PrButton',
   component: PrButton,
+  render: (args) => ({
+    components: { PrButton },
+    setup: () => ({ args }),
+    template: '<PrButton v-bind="args" />',
+  }),
   argTypes: {
     variant: { control: 'select', options: ['solid', 'outline', 'ghost', 'soft'] },
     size: { control: 'select', options: ['sm', 'md', 'lg'] },
@@ -22,13 +27,12 @@ const meta: Meta<typeof PrButton> = {
 export default meta
 type Story = StoryObj<typeof PrButton>
 
-export const Default: Story = {
-  args: {
-    color: "yellow"
-  }
-}
+export const Default: Story = {}
+
+const noControls = { parameters: { controls: { disable: true } } }
 
 export const Variants: Story = {
+  ...noControls,
   render: () => ({
     components: { PrButton },
     template: `
@@ -43,6 +47,7 @@ export const Variants: Story = {
 }
 
 export const Colors: Story = {
+  ...noControls,
   render: () => ({
     components: { PrButton },
     template: `
@@ -60,6 +65,7 @@ export const Colors: Story = {
 }
 
 export const Sizes: Story = {
+  ...noControls,
   render: () => ({
     components: { PrButton },
     template: `
@@ -73,6 +79,7 @@ export const Sizes: Story = {
 }
 
 export const OutlineColors: Story = {
+  ...noControls,
   render: () => ({
     components: { PrButton },
     template: `
@@ -88,5 +95,9 @@ export const OutlineColors: Story = {
 }
 
 export const Disabled: Story = {
-  args: { label: 'Disabled', disabled: true },
+  args: {
+    label: 'Disabled',
+    disabled: true,
+    variant: "outline"
+  },
 }

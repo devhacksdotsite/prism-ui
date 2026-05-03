@@ -4,6 +4,7 @@ import { PrDivider } from '../PrDivider'
 import { PrButton } from '../PrButton'
 
 const meta: Meta = {
+  parameters: { controls: { disable: true } },
   title: 'Components/Card & Divider',
 }
 

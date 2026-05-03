@@ -3,6 +3,7 @@ import { PrMenu } from '../PrMenu'
 import { PrChip } from '../PrChip'
 
 const meta: Meta = {
+  parameters: { controls: { disable: true } },
   title: 'Components/Menu & Chip',
 }
 

@@ -2,24 +2,30 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { PrTooltip } from '.'
 import { PrButton } from '../PrButton'
 
-const meta: Meta = {
+const meta: Meta<typeof PrTooltip> = {
   title: 'Components/PrTooltip',
-}
-
-export default meta
-
-export const Default: StoryObj = {
-  render: () => ({
+  component: PrTooltip,
+  render: (args) => ({
     components: { PrTooltip, PrButton },
+    setup: () => ({ args }),
     template: `
-      <div style="display: flex; gap: 1.5rem; padding: 3rem;">
-        <PrTooltip text="I'm on top!" position="top">
-          <PrButton label="Hover me (top)" color="purple" />
-        </PrTooltip>
-        <PrTooltip text="I'm on bottom!" position="bottom">
-          <PrButton label="Hover me (bottom)" color="blue" />
+      <div style="padding: 3rem;">
+        <PrTooltip v-bind="args">
+          <PrButton label="Hover me" color="purple" />
         </PrTooltip>
       </div>
     `,
   }),
+  argTypes: {
+    position: { control: 'select', options: ['top', 'bottom'] },
+  },
+  args: {
+    text: 'Hello from Prism UI!',
+    position: 'top',
+  },
 }
+
+export default meta
+type Story = StoryObj<typeof PrTooltip>
+
+export const Default: Story = {}

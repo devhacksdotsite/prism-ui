@@ -4,11 +4,6 @@ import { PrButton } from '../PrButton'
 
 const meta: Meta = {
   title: 'Components/PrToast',
-}
-
-export default meta
-
-export const Default: StoryObj = {
   render: () => ({
     components: { PrToast, PrButton },
     setup() {
@@ -33,3 +28,7 @@ export const Default: StoryObj = {
     `,
   }),
 }
+
+export default meta
+
+export const Default: StoryObj = {}

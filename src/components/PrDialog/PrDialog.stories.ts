@@ -6,19 +6,16 @@ import { PrButton } from '../PrButton'
 const meta: Meta<typeof PrDialog> = {
   title: 'Components/PrDialog',
   component: PrDialog,
-}
-
-export default meta
-type Story = StoryObj<typeof PrDialog>
-
-export const Default: Story = {
-  render: () => ({
+  render: (args) => ({
     components: { PrDialog, PrButton },
-    setup: () => ({ visible: ref(false) }),
+    setup: () => {
+      const visible = ref(false)
+      return { args, visible }
+    },
     template: `
       <div>
         <PrButton label="Open Dialog" @click="visible = true" />
-        <PrDialog v-model="visible" header="Hello Prism">
+        <PrDialog v-bind="args" v-model="visible">
           <p class="text-text-muted">This is a pastel-themed dialog with a blurred backdrop.</p>
           <template #footer>
             <PrButton label="Cancel" variant="ghost" color="coral" @click="visible = false" />
@@ -28,9 +25,26 @@ export const Default: Story = {
       </div>
     `,
   }),
+  argTypes: {
+    closable: { control: 'boolean' },
+    modal: { control: 'boolean' },
+    width: { control: 'text' },
+  },
+  args: {
+    header: 'Hello Prism',
+    closable: true,
+    modal: true,
+    width: '28rem',
+  },
 }
 
+export default meta
+type Story = StoryObj<typeof PrDialog>
+
+export const Default: Story = {}
+
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { PrDialog, PrButton },
     setup: () => ({ sm: ref(false), lg: ref(false) }),
@@ -43,26 +57,6 @@ export const Sizes: Story = {
         </PrDialog>
         <PrDialog v-model="lg" header="Large Dialog" width="40rem">
           <p class="text-text-muted">This is a wider dialog for more content.</p>
-        </PrDialog>
-      </div>
-    `,
-  }),
-}
-
-export const Scrollable: Story = {
-  render: () => ({
-    components: { PrDialog, PrButton },
-    setup: () => ({ visible: ref(false) }),
-    template: `
-      <div>
-        <PrButton label="Scrollable Content" color="coral" @click="visible = true" />
-        <PrDialog v-model="visible" header="Long Content">
-          <div class="flex flex-col gap-4">
-            <p v-for="i in 15" :key="i" class="text-text-muted">Paragraph {{ i }} — Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <template #footer>
-            <PrButton label="Close" variant="outline" color="purple" @click="visible = false" />
-          </template>
         </PrDialog>
       </div>
     `,

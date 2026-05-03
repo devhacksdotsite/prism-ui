@@ -42,6 +42,8 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    actions: { disable: true },
+    interactions: { disable: true },
     a11y: {
       test: 'todo',
     },

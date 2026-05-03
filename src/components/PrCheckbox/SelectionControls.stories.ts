@@ -5,6 +5,7 @@ import { PrRadio } from '../PrRadio'
 import { PrToggle } from '../PrToggle'
 
 const meta: Meta = {
+  parameters: { controls: { disable: true } },
   title: 'Components/Selection Controls',
 }
 
