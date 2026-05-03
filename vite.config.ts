@@ -1,36 +1,22 @@
-/// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import tailwindcss from '@tailwindcss/vite';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-import { playwright } from '@vitest/browser-playwright';
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/vite'
+import { resolve } from 'path'
 
-// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
-  test: {
-    projects: [{
-      extends: true,
-      plugins: [
-      // The plugin will run tests for the stories defined in your Storybook config
-      // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-      storybookTest({
-        configDir: path.join(dirname, '.storybook')
-      })],
-      test: {
-        name: 'storybook',
-        browser: {
-          enabled: true,
-          headless: true,
-          provider: playwright({}),
-          instances: [{
-            browser: 'chromium'
-          }]
-        }
-      }
-    }]
-  }
-});
+  build: {
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'PrismUI',
+      fileName: 'prism-ui',
+      formats: ['es'],
+    },
+    rollupOptions: {
+      external: ['vue', 'primevue/config', 'primevue/button', 'primevue/inputtext', 'primevue/textarea', 'primevue/select', 'primevue/checkbox', 'primevue/radiobutton', 'primevue/toggleswitch', 'primevue/badge', 'primevue/dialog', 'primevue/toast', 'primevue/toastservice', 'primevue/usetoast', 'primevue/accordion', 'primevue/accordionpanel', 'primevue/accordionheader', 'primevue/accordioncontent', 'primevue/tabs', 'primevue/tablist', 'primevue/tab', 'primevue/tabpanels', 'primevue/tabpanel', 'primevue/datatable', 'primevue/column'],
+      output: {
+        globals: { vue: 'Vue' },
+      },
+    },
+  },
+})

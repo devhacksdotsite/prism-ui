@@ -1,8 +1,20 @@
 {
   "name": "prism-ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "main": "./dist/prism-ui.js",
+  "module": "./dist/prism-ui.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/prism-ui.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./dist/style.css",
+    "./tokens.css": "./src/theme/tokens.css"
+  },
+  "files": ["dist", "src/theme/tokens.css"],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
