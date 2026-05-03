@@ -16,7 +16,7 @@ const borderMap: Record<Color, { base: string; hover: string }> = {
   mint:   { base: 'rgba(110,236,212,0.4)', hover: '#6EECD4' },
   coral:  { base: 'rgba(255,138,128,0.4)', hover: '#FF8A80' },
   lilac:  { base: 'rgba(212,170,255,0.4)', hover: '#D4AAFF' },
-  none:   { base: '#EDE6FF', hover: 'rgba(192,132,252,0.3)' },
+  none:   { base: 'var(--color-surface-2)', hover: 'rgba(192,132,252,0.3)' },
 }
 </script>
 

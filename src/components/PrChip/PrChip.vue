@@ -17,7 +17,7 @@ const styles: Record<Color, { bg: string; text: string }> = {
   purple: { bg: 'rgba(192,132,252,0.15)', text: '#C084FC' },
   blue:   { bg: 'rgba(103,212,255,0.15)', text: '#67D4FF' },
   mint:   { bg: 'rgba(110,236,212,0.15)', text: '#6EECD4' },
-  yellow: { bg: 'rgba(253,235,113,0.2)', text: '#2D1B4E' },
+  yellow: { bg: 'rgba(253,235,113,0.2)', text: 'var(--color-text)' },
   coral:  { bg: 'rgba(255,138,128,0.15)', text: '#FF8A80' },
   lilac:  { bg: 'rgba(212,170,255,0.15)', text: '#D4AAFF' },
 }

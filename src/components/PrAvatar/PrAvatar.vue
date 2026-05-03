@@ -23,7 +23,7 @@ const colorStyles: Record<Color, { ring: string; bg: string; text: string }> = {
   purple: { ring: '#C084FC', bg: 'rgba(192,132,252,0.15)', text: '#C084FC' },
   blue:   { ring: '#67D4FF', bg: 'rgba(103,212,255,0.15)', text: '#67D4FF' },
   mint:   { ring: '#6EECD4', bg: 'rgba(110,236,212,0.15)', text: '#6EECD4' },
-  yellow: { ring: '#FDEB71', bg: 'rgba(253,235,113,0.2)', text: '#2D1B4E' },
+  yellow: { ring: '#FDEB71', bg: 'rgba(253,235,113,0.2)', text: 'var(--color-text)' },
   coral:  { ring: '#FF8A80', bg: 'rgba(255,138,128,0.15)', text: '#FF8A80' },
   lilac:  { ring: '#D4AAFF', bg: 'rgba(212,170,255,0.15)', text: '#D4AAFF' },
 }
