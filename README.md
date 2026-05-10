@@ -1,6 +1,6 @@
 # 🔮 Prism UI
 
-A vibrant, pastel-themed design system and component library built with Vue 3, PrimeVue 4, and Tailwind CSS v4 — documented in Storybook.
+A vibrant, pastel-themed design system and component library built with Vue 3, PrimeVue 4, and Tailwind CSS v4.
 
 https://devhacksdotsite.github.io/prism-ui/?path=/story/design-system-overview--overview
 
@@ -14,67 +14,21 @@ https://devhacksdotsite.github.io/prism-ui/?path=/story/design-system-overview--
 | Documentation | Storybook 10 |
 | Build | Vite (library mode, ESM output) |
 
-## Architecture
+## Installation
 
-```mermaid
-graph TD
-  subgraph Consumer App
-    App[Vue App]
-    App -->|imports| Lib[prism-ui]
-    App -->|imports| Tokens[tokens.css]
-  end
-
-  subgraph prism-ui Package
-    Lib --> Components[24 Components]
-    Lib --> Composables[useTheme]
-    Lib --> Preset[PrimeVue Passthrough Preset]
-
-    Components -->|wraps| PV[PrimeVue 4 Unstyled]
-    Components -->|styled with| TW[Tailwind CSS v4]
-    Preset -->|applies classes to| PV
-    Tokens[tokens.css] -->|defines| TW
-  end
-
-  subgraph Storybook Docs Site
-    SB[Storybook 10]
-    SB --> Components
-    SB --> Tokens
-    SB --> Preset
-  end
-
-  style App fill:#C084FC,color:#fff
-  style Lib fill:#FF6B9D,color:#fff
-  style Components fill:#67D4FF,color:#2D1B4E
-  style PV fill:#6EECD4,color:#2D1B4E
-  style TW fill:#FDEB71,color:#2D1B4E
-  style SB fill:#D4AAFF,color:#2D1B4E
-  style Tokens fill:#80F0E0,color:#2D1B4E
-  style Preset fill:#FF8A80,color:#fff
-  style Composables fill:#D4AAFF,color:#2D1B4E
-```
-
-## Getting Started
-
-```bash
-# Install dependencies
-npm install
-
-# Run Storybook (development)
-npm run storybook
-
-# Build library (ESM output to dist/)
-npm run build
-
-# Build Storybook static site (to storybook-static/)
-npm run build-storybook
-```
-
-## Installation (npm)
-
-Prism UI requires **Vue 3** and **PrimeVue 4** as peer dependencies — they are not bundled with the library.
+Prism UI requires **Vue 3** and **PrimeVue 4** as peer dependencies.
 
 ```bash
 npm install prism-ui primevue vue
+```
+
+### Setup
+
+```css
+/* src/style.css */
+@import "tailwindcss";
+@source "../node_modules/prism-ui";
+@import "prism-ui/style.css";
 ```
 
 ```ts
@@ -82,11 +36,15 @@ npm install prism-ui primevue vue
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import { preset } from 'prism-ui'
-import 'prism-ui/tokens.css'
+import App from './App.vue'
+import './style.css'
 
 const app = createApp(App)
 app.use(PrimeVue, { unstyled: true, pt: preset })
+app.mount('#app')
 ```
+
+### Usage
 
 ```vue
 <script setup>
@@ -100,6 +58,8 @@ import { PrButton, PrCard, PrInput } from 'prism-ui'
   </PrCard>
 </template>
 ```
+
+> **Note:** The `@source "../node_modules/prism-ui"` directive tells Tailwind v4 to scan the prism-ui bundle for utility classes used by the components.
 
 ## Color Palette — "Pastel Neon"
 
@@ -128,47 +88,47 @@ import { PrButton, PrCard, PrInput } from 'prism-ui'
 
 ### Form Controls
 
-| Component | PrimeVue Base | Props |
-|---|---|---|
-| `PrButton` | Button | `label`, `variant` (solid/outline/ghost/soft), `size` (sm/md/lg), `color`, `disabled` |
-| `PrInput` | InputText | `placeholder`, `status` (default/success/error), `disabled`, `v-model` |
-| `PrTextarea` | Textarea | `placeholder`, `status`, `disabled`, `maxlength`, `rows`, `v-model` |
-| `PrSelect` | Select | `options`, `optionLabel`, `optionValue`, `placeholder`, `status`, `disabled`, `v-model` |
-| `PrCheckbox` | Checkbox | `label`, `color`, `value`, `disabled`, `v-model` |
-| `PrRadio` | RadioButton | `label`, `color`, `value`, `disabled`, `v-model` |
-| `PrToggle` | ToggleSwitch | `label`, `color`, `disabled`, `v-model` |
+| Component | Props |
+|---|---|
+| `PrButton` | `label`, `variant` (solid/outline/ghost/soft), `size` (sm/md/lg), `color`, `disabled` |
+| `PrInput` | `placeholder`, `status` (default/success/error), `disabled`, `v-model` |
+| `PrTextarea` | `placeholder`, `status`, `disabled`, `maxlength`, `rows`, `v-model` |
+| `PrSelect` | `options`, `optionLabel`, `optionValue`, `placeholder`, `status`, `disabled`, `v-model` |
+| `PrCheckbox` | `label`, `color`, `value`, `disabled`, `v-model` |
+| `PrRadio` | `label`, `color`, `value`, `disabled`, `v-model` |
+| `PrToggle` | `label`, `color`, `disabled`, `v-model` |
 
 ### Display
 
-| Component | Base | Props |
-|---|---|---|
-| `PrBadge` | Badge | `value`, `color`, `dot` |
-| `PrTag` | Custom | `value`, `color`, `removable` |
-| `PrChip` | Custom | `label`, `color`, `removable`, `image` |
-| `PrAvatar` | Custom | `label`, `image`, `color`, `size` (sm/md/lg) |
+| Component | Props |
+|---|---|
+| `PrBadge` | `value`, `color`, `dot` |
+| `PrTag` | `value`, `color`, `removable` |
+| `PrChip` | `label`, `color`, `removable`, `image` |
+| `PrAvatar` | `label`, `image`, `color`, `size` (sm/md/lg) |
 
 ### Layout & Feedback
 
-| Component | Base | Props |
-|---|---|---|
-| `PrCard` | Custom | `title`, `subtitle`, `color`. Slots: `header`, `default`, `footer` |
-| `PrDivider` | Custom | `color`, `layout` (horizontal/vertical), `label` |
-| `PrDialog` | Dialog | `header`, `modal`, `closable`, `width`, `v-model`. Slots: `default`, `footer` |
-| `PrToast` | Toast | Place once, trigger via `useToast()` |
-| `PrTooltip` | Custom | `text`, `position` (top/bottom). Wraps slot content |
-| `PrSkeleton` | Custom | `width`, `height`, `shape` (rectangle/circle) |
-| `PrProgressBar` | Custom | `value`, `color`, `height`, `showValue` |
-| `PrAccordion` | Accordion | `items: { label, content }[]` |
+| Component | Props |
+|---|---|
+| `PrCard` | `title`, `subtitle`, `color`. Slots: `header`, `default`, `footer` |
+| `PrDivider` | `color`, `layout` (horizontal/vertical), `label` |
+| `PrDialog` | `header`, `modal`, `closable`, `width`, `v-model`. Slots: `default`, `footer` |
+| `PrToast` | Place once, trigger via `useToast()` |
+| `PrTooltip` | `text`, `position` (top/bottom). Wraps slot content |
+| `PrSkeleton` | `width`, `height`, `shape` (rectangle/circle) |
+| `PrProgressBar` | `value`, `color`, `height`, `showValue` |
+| `PrAccordion` | `items: { label, content }[]` |
 
 ### Data & Navigation
 
-| Component | Base | Props |
-|---|---|---|
-| `PrDataTable` | DataTable | `value`, `columns: { field, header, sortable }[]`, `striped`, `paginator`, `rows` |
-| `PrTabs` | Tabs | `tabs: { label, value }[]`, `color`. Named slots per tab value |
-| `PrBreadcrumb` | Custom | `items: { label, url }[]`, `color` |
-| `PrPaginator` | Custom | `totalRecords`, `rows`, `color`, `v-model:page` |
-| `PrMenu` | Custom | `items: { label, icon, separator, disabled }[]` |
+| Component | Props |
+|---|---|
+| `PrDataTable` | `value`, `columns: { field, header, sortable }[]`, `striped`, `paginator`, `rows` |
+| `PrTabs` | `tabs: { label, value }[]`, `color`. Named slots per tab value |
+| `PrBreadcrumb` | `items: { label, url }[]`, `color` |
+| `PrPaginator` | `totalRecords`, `rows`, `color`, `v-model:page` |
+| `PrMenu` | `items: { label, icon, separator, disabled }[]` |
 
 ## Theming
 
@@ -185,80 +145,25 @@ setTheme('dark')   // Set explicitly
 
 Dark mode uses deep purple backgrounds with the same vibrant pastel accents.
 
-### Design Decisions
-
-- **PrimeVue Unstyled Mode**: All default styles stripped. Tailwind classes applied via the passthrough (PT) API through a centralized preset.
-- **Complex components** (Dialog, Toast, Select, DataTable, Accordion, Tabs) wrap PrimeVue for built-in accessibility, keyboard nav, and ARIA.
-- **Simple components** (Skeleton, ProgressBar, Tag, Avatar, Divider, Tooltip, Chip, etc.) are pure Tailwind — PrimeVue adds overhead without benefit for these.
-- **Dynamic colors** use inline styles with CSS variables to ensure Tailwind generates all needed classes.
-
-## Project Structure
-
-```
-prism-ui/
-├── .storybook/
-│   ├── main.ts              # Storybook config (addons, framework)
-│   ├── preview.ts           # Global decorators, PrimeVue setup, theme toggle
-│   └── manager.ts           # Custom Storybook UI theme (pastel branding)
-├── src/
-│   ├── components/
-│   │   ├── PrButton/
-│   │   │   ├── PrButton.vue
-│   │   │   ├── PrButton.stories.ts
-│   │   │   └── index.ts
-│   │   ├── PrInput/
-│   │   ├── PrTextarea/
-│   │   ├── PrSelect/
-│   │   ├── PrCheckbox/       # Also contains SelectionControls.stories.ts
-│   │   ├── PrRadio/
-│   │   ├── PrToggle/
-│   │   ├── PrBadge/          # Also contains DisplayComponents.stories.ts
-│   │   ├── PrTag/
-│   │   ├── PrChip/
-│   │   ├── PrAvatar/
-│   │   ├── PrCard/           # Also contains CardDivider.stories.ts
-│   │   ├── PrDivider/
-│   │   ├── PrDialog/
-│   │   ├── PrToast/
-│   │   ├── PrTooltip/
-│   │   ├── PrSkeleton/       # Also contains LoadingComponents.stories.ts
-│   │   ├── PrProgressBar/
-│   │   ├── PrAccordion/
-│   │   ├── PrTabs/
-│   │   ├── PrDataTable/
-│   │   ├── PrBreadcrumb/     # Also contains NavComponents.stories.ts
-│   │   ├── PrPaginator/
-│   │   ├── PrMenu/           # Also contains MenuChip.stories.ts
-│   │   └── Welcome.stories.ts  # Design System Overview page
-│   ├── composables/
-│   │   └── useTheme.ts       # Light/dark theme switching
-│   ├── theme/
-│   │   ├── tokens.css        # Tailwind theme tokens (palette + neutrals + dark mode)
-│   │   ├── preset.ts         # PrimeVue passthrough preset
-│   │   └── animations.css    # Shared animation presets (scale, slide, fade, collapse)
-│   └── index.ts              # Library entry point (exports all components + composables)
-├── .gitignore
-├── package.json
-├── vite.config.ts             # Library build config (ESM output)
-├── tsconfig.json
-├── tsconfig.app.json
-├── tsconfig.node.json
-└── README.md
-```
-
-## Deployment
-
-### Storybook (docs site)
+## Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Run Storybook
+npm run storybook
+
+# Build library (ESM output to dist/)
+npm run build
+
+# Build Storybook static site
 npm run build-storybook
-# Deploy storybook-static/ to GitHub Pages, S3, or any static host
 ```
 
-### npm Package
+## Publishing
 
 ```bash
-npm login
 npm run build
 npm publish --access public
 ```
