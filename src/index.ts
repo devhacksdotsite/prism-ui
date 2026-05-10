@@ -1,3 +1,6 @@
+// Style
+import './theme/style.css'
+
 // Components
 export { PrButton } from './components/PrButton'
 export { PrInput } from './components/PrInput'
