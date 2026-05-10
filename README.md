@@ -2,7 +2,9 @@
 
 A vibrant, pastel-themed design system and component library built with Vue 3, PrimeVue 4, and Tailwind CSS v4.
 
-https://devhacksdotsite.github.io/prism-ui/?path=/story/design-system-overview--overview
+- 🌐 [Demo Site](https://devhacksdotsite.github.io/prism-ui-demo/)
+- 📖 [Storybook](https://devhacksdotsite.github.io/prism-ui/)
+- 👤 [Author](https://jesse-salinas.com/)
 
 ## Stack
 

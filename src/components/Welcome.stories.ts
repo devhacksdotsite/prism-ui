@@ -43,8 +43,12 @@ export const Overview: StoryObj = {
 
         <!-- Header -->
         <div class="text-center mb-12">
-          <h1 class="text-5xl font-extrabold text-purple mb-2">🔮 Prism UI</h1>
-          <p class="text-text-muted text-lg">A vibrant pastel design system &amp; component library</p>
+          <h1 class="text-5xl font-extrabold mb-2">
+            <span class="text-pink">P</span><span class="text-purple">r</span><span class="text-blue">i</span><span class="text-mint">s</span><span class="text-coral">m</span>
+            <span class="text-text"> UI</span>
+          </h1>
+          <p class="text-text-muted text-lg mb-1">A vibrant pastel design system for Vue 3</p>
+          <p class="text-text-muted text-sm">24 production-ready components · 7 colors · Accessible · Themeable</p>
           <div class="flex gap-2 justify-center mt-4">
             <PrTag value="Vue 3" color="mint" />
             <PrTag value="PrimeVue 4" color="purple" />
