@@ -55,6 +55,10 @@ export const Overview: StoryObj = {
             <PrTag value="Tailwind v4" color="blue" />
             <PrTag value="Storybook 10" color="pink" />
           </div>
+          <div class="flex gap-3 justify-center mt-6">
+            <a href="https://devhacksdotsite.github.io/prism-ui-demo/" target="_blank"><PrButton label="Demo Site" color="purple" size="sm" /></a>
+            <a href="https://github.com/devhacksdotsite/prism-ui" target="_blank"><PrButton label="GitHub" color="purple" variant="outline" size="sm" /></a>
+          </div>
         </div>
 
         <PrDivider color="purple" />
